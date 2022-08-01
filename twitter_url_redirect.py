@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import re
+import sys
 import requests
 from bs4 import BeautifulSoup
 from lxml import etree
@@ -13,8 +14,6 @@ proxies = {
     'http': 'http://127.0.0.1:1080',
     'https': 'http://127.0.0.1:1080'
 }
-start = 5000
-step = 5000
 
 
 def find_all_files(base):
@@ -34,12 +33,14 @@ def get_redirect_url(url):
 
 
 def main():
-    csv_file_path = './redirect_urls.csv'
+    csv_file_path = "./URL_unique_split/" + sys.argv[1] + ".csv"
+    # save_file_path = sys.argv[1].split('/')[:-1] + "/" + sys.argv[1].split('/')[-1].split('.')[0] + "_redirect.csv"
+    # save_file_path = "./URL_unique_split/" + sys.argv[1] + "_redirect.csv"
     url_df = pd.read_csv(csv_file_path, encoding='utf-8', engine='python', na_values='null')
     # url_df = url_df.reindex(columns=url_df.columns.tolist() + ["redirect_url"])
-    urls = url_df.iloc[start:start + step, 0].values  # 并行
-    try:
-        for index, url in enumerate(urls, 0):
+    urls = url_df.iloc[:, 0].values
+    for index, url in enumerate(urls, 0):
+        try:
             # print(url_df.iloc[index, 1])
             if url_df.iloc[index, 1] != url_df.iloc[index, 1]:  # nan
                 print("No.{0} Analysing URL: {1}".format(index, url))
@@ -47,10 +48,9 @@ def main():
                 if redirect_url:
                     print("Get Redirect URL: ", redirect_url)
                     url_df.iloc[index, 1] = redirect_url
-        url_df.to_csv('./redirect_urls.csv', index=False)
-    except Exception as err:
-        print("Error: ", err)
-    url_df.to_csv('./redirect_urls.csv', index=False)
+        except Exception as err:
+            print("Error: ", err)
+    url_df.to_csv(csv_file_path, index=False)
 
 
 if __name__ == '__main__':
