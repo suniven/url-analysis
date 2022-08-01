@@ -13,6 +13,8 @@ proxies = {
     'http': 'http://127.0.0.1:1080',
     'https': 'http://127.0.0.1:1080'
 }
+start = 5000
+step = 5000
 
 
 def find_all_files(base):
@@ -35,8 +37,7 @@ def main():
     csv_file_path = './redirect_urls.csv'
     url_df = pd.read_csv(csv_file_path, encoding='utf-8', engine='python', na_values='null')
     # url_df = url_df.reindex(columns=url_df.columns.tolist() + ["redirect_url"])
-    urls = url_df.iloc[0:5000, 0].values  # 并行
-    # urls = url_df.iloc[5001:10000, 0].values  # 并行
+    urls = url_df.iloc[start:start + step, 0].values  # 并行
     try:
         for index, url in enumerate(urls, 0):
             # print(url_df.iloc[index, 1])
