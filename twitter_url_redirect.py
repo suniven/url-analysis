@@ -1,3 +1,6 @@
+# Twitter评论中的URL大多数会被Twitter转化为短链接的形式
+# 通过requests获取meta标签中的重定向URL
+
 import pandas as pd
 import os
 import re
@@ -36,7 +39,8 @@ def main():
     csv_file_path = "./URL_unique_split/" + sys.argv[1] + ".csv"
     # save_file_path = sys.argv[1].split('/')[:-1] + "/" + sys.argv[1].split('/')[-1].split('.')[0] + "_redirect.csv"
     # save_file_path = "./URL_unique_split/" + sys.argv[1] + "_redirect.csv"
-    url_df = pd.read_csv(csv_file_path, encoding='utf-8', engine='python', na_values='null')
+    url_df = pd.read_csv(csv_file_path, encoding='utf-8',
+                         engine='python', na_values='null')
     # url_df = url_df.reindex(columns=url_df.columns.tolist() + ["redirect_url"])
     urls = url_df.iloc[:, 0].values
     for index, url in enumerate(urls, 0):
