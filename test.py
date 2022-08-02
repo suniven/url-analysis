@@ -5,7 +5,7 @@ from lxml import etree
 import re
 
 list = []
-csv_file_path = './notsure.csv'
+csv_file_path = './notsure_unique.csv'
 url_df = pd.read_csv(csv_file_path, encoding='utf-8', engine='python')
 # url_df = url_df.drop_duplicates()
 headers = {
@@ -17,12 +17,15 @@ proxies = {
 }
 urls = url_df.iloc[:, 0]
 for url in urls:
-    url = "http://" + url
-    print(url)
-    res = requests.get(url, headers=headers, timeout=8, proxies=proxies)
-    print("{0}: {1}".format(url, res.status_code))
-    if res.status_code == "200":
-        list.append(url)
+    try:
+        url = "http://" + url
+        print(url)
+        res = requests.get(url, headers=headers, timeout=8, proxies=proxies)
+        print("{0}: {1}".format(url, res.status_code))
+        if res.status_code == "200":
+            list.append(url)
+    except Exception as err:
+        print("Error: ", err)
 df = pd.DataFrame(list, columns=['url'])
 df.to_csv('./notsure_unique_visitable.csv', index=False)
 
