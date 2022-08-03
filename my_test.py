@@ -4,16 +4,20 @@ import pandas as pd
 from lxml import etree
 import re
 import os
+import comm.logger as logger
 
-df = pd.read_csv('./urls_unique.csv', encoding='utf-8', engine='python')
-count = df.shape[0]
-df = df.reindex(columns=df.columns.tolist() + ["domain"])
-for i in range(count):
-    df.iloc[i, 1] = '.'.join(df.iloc[i, 0].split('/')[2].split('.')[-2:])
-df.to_csv('./urls_unique.csv', index=False)
+_logger = logger.Logger('info')
+_logger.error('test error')
+
+# # 设置域名
+# df = pd.read_csv('./urls_unique.csv', encoding='utf-8', engine='python')
+# count = df.shape[0]
+# df = df.reindex(columns=df.columns.tolist() + ["domain"])
+# for i in range(count):
+#     df.iloc[i, 1] = '.'.join(df.iloc[i, 0].split('/')[2].split('.')[-2:])
+# df.to_csv('./urls_unique.csv', index=False)
 
 # # 合并URLcsv文件
-
 
 # def find_all_files(base):
 #     for root, ds, fs in os.walk(base):
@@ -22,7 +26,6 @@ df.to_csv('./urls_unique.csv', index=False)
 #                 fullname = os.path.join(root, f)
 #                 yield fullname
 
-
 # def join():
 #     new_df = pd.DataFrame()
 #     for file in find_all_files('./URL_unique_split'):
@@ -30,7 +33,6 @@ df.to_csv('./urls_unique.csv', index=False)
 #         new_df = pd.concat([df, new_df], ignore_index=True)
 
 #     new_df.to_csv('./urls_unique.csv', index=False, columns=['redirect_url'])
-
 
 # join()
 
