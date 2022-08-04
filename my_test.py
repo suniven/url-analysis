@@ -5,9 +5,13 @@ from lxml import etree
 import re
 import os
 import comm.logger as logger
+from comm.model import Sample
 
-_logger = logger.Logger('info')
-_logger.error('test error')
+df = pd.DataFrame(columns=['redirect_url', 'landing_page', 'landing_page_domain'])
+df.to_csv('./urls_unique_landing_page.csv', index=False)
+
+# _logger = logger.Logger('info')
+# _logger.error('test error')
 
 # # 设置域名
 # df = pd.read_csv('./urls_unique.csv', encoding='utf-8', engine='python')
