@@ -150,14 +150,17 @@ def find_final_page(current_url, html, depth):
 
 
 def visit_url(url):
-    res = requests.get(url, headers=headers, proxies=proxies, timeout=10)
-    html = res.text
-    landing_page = res.url
-    tag = predict_url(html, landing_page)
-    if tag == 1:
-        return landing_page
-    else:
-        return find_final_page(landing_page, html, MAX_DEPTH)
+    try:
+        res = requests.get(url, headers=headers, proxies=proxies, timeout=10)
+        html = res.text
+        landing_page = res.url
+        tag = predict_url(html, landing_page)
+        if tag == 1:
+            return landing_page
+        else:
+            return find_final_page(landing_page, html, MAX_DEPTH)
+    except Exception as error:
+        _logger.error(error)
 
 
 def main():
@@ -166,9 +169,9 @@ def main():
                              encoding='utf-8', engine='python')
         landing_page_df = pd.read_csv(
             './urls_unique_landing_page.csv', encoding='utf-8', engine='python')
-        visited = landing_page_df.iloc[:, 0]
+        visited_list = landing_page_df['redirect_url'].values.tolist()
         for url in url_df.iloc[:, 0]:
-            if url in visited:
+            if url in visited_list:
                 continue
             print("visiting: ", url)
             landing_page = visit_url(url)
