@@ -130,7 +130,7 @@ def find_final_page(current_url, html, depth):
     a_tags = bs.find_all("a")
     for a_tag in a_tags:
         href = a_tag.get("href")
-        if not href.startswith('http'):
+        if not (href.startswith('http') or href.startswith('/')):
             continue
         else:
             res = requests.get(href, headers=headers, proxies=proxies, timeout=10)
