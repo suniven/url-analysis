@@ -15,3 +15,46 @@ comm/__pycache__/config.cpython-37.pyc
 comm/__pycache__/logger.cpython-37.pyc
 comm/__pycache__/model.cpython-37.pyc
 comm/__pycache__/model.cpython-38.pyc
+extract/addiction.csv
+extract/Apps.csv
+extract/Beauty.csv
+extract/Betting.csv
+extract/Billing.csv
+extract/Cams.csv
+extract/Casino.csv
+extract/Clothing.csv
+extract/Coupons.csv
+extract/Crypto.csv
+extract/Dating.csv
+extract/Debt.csv
+extract/Diet.csv
+extract/eCommerce.csv
+extract/Email Submit.csv
+extract/Entertainment.csv
+extract/Financial.csv
+extract/Free Trial.csv
+extract/Gambling.csv
+extract/Gaming.csv
+extract/Health.csv
+extract/HealthSports.csv
+extract/Install.csv
+extract/Insurance.csv
+extract/Investment.csv
+extract/Loan.csv
+extract/Make Money.csv
+extract/Pay Per Call.csv
+extract/SEO.csv
+extract/Shopping.csv
+extract/Social Media.csv
+extract/Software.csv
+extract/Sports.csv
+extract/Streaming.csv
+extract/Survey.csv
+extract/Sweepstakes.csv
+extract/Travel.csv
+extract/VOD.csv
+extract/Weight Loss.csv
+new.py
+urls_todo_domain.csv
+urls_todo.csv
+urls_todo_filter.csv

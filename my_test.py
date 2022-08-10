@@ -7,37 +7,42 @@ import os
 import comm.logger as logger
 from comm.model import Sample
 
-df = pd.DataFrame(columns=['redirect_url', 'landing_page', 'landing_page_domain'])
-df.to_csv('./urls_unique_landing_page.csv', index=False)
+# df = pd.DataFrame(columns=['redirect_url', 'landing_page', 'landing_page_domain'])
+# df.to_csv('./urls_unique_landing_page.csv', index=False)
 
 # _logger = logger.Logger('info')
 # _logger.error('test error')
 
-# # 设置域名
-# df = pd.read_csv('./urls_unique.csv', encoding='utf-8', engine='python')
-# count = df.shape[0]
-# df = df.reindex(columns=df.columns.tolist() + ["domain"])
-# for i in range(count):
-#     df.iloc[i, 1] = '.'.join(df.iloc[i, 0].split('/')[2].split('.')[-2:])
-# df.to_csv('./urls_unique.csv', index=False)
+# 设置域名
+df = pd.read_csv('./urls_todo.csv', encoding='utf-8', engine='python')
+count = df.shape[0]
+df = df.reindex(columns=df.columns.tolist() + ["domain"])
+for i in range(count):
+    if df.iloc[i, 1] == df.iloc[i, 1]:
+        print(df.iloc[i, 1])
+        df.iloc[i, 2] = '.'.join(df.iloc[i, 1].split('/')[2].split('.')[-2:])
+df.to_csv('./urls_todo_domain.csv', index=False)
 
 # # 合并URLcsv文件
-
+#
+#
 # def find_all_files(base):
 #     for root, ds, fs in os.walk(base):
 #         for f in fs:
 #             if f.endswith(".csv"):
 #                 fullname = os.path.join(root, f)
 #                 yield fullname
-
+#
+#
 # def join():
 #     new_df = pd.DataFrame()
 #     for file in find_all_files('./URL_unique_split'):
 #         df = pd.read_csv(file, encoding='utf-8', engine='python')
 #         new_df = pd.concat([df, new_df], ignore_index=True)
-
-#     new_df.to_csv('./urls_unique.csv', index=False, columns=['redirect_url'])
-
+#
+#     new_df.to_csv('./urls_todo.csv', index=False)
+#
+#
 # join()
 
 # csv_file = pd.read_csv('./notsure_unique_visitable.csv',
